@@ -13,17 +13,23 @@ public class LoginPage {
         this.driver = driver;
     }
 
-    @FindBy(xpath = "//input[@id='email']")
+    @FindBy(xpath = "//input[@id='input-email']")
     private WebElement email;
 
-    @FindBy(xpath = "//input[@id='password']")
+    @FindBy(xpath = "//input[@id='input-password']")
     private WebElement password;
 
-    @FindBy(id = "login-button")
+    @FindBy(xpath = "//button[@id='btn-masuk']")
     private WebElement btnLogin;
 
     @FindBy(xpath = "//h3")
     private WebElement errorMessage;
+
+    @FindBy(xpath = "//label[@class='btn btn-ghost btn-circle avatar']")
+    private WebElement avatarButton;
+
+    @FindBy(xpath = "//button[@id='btn-auth']")
+    private WebElement dropDownAvatar;
 
     public void setEmail(String eml){
         email.sendKeys(eml);
@@ -44,5 +50,15 @@ public class LoginPage {
 
     public String getErrorText(){
         return errorMessage.getText();
+    }
+
+    public void avatarBtn() {
+        avatarButton.click();
+        dropDownAvatar.click();
+    }
+
+    public boolean disableBtn(){
+        btnLogin.isEnabled();
+        return false;
     }
 }

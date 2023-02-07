@@ -1,16 +1,23 @@
 @Login
   Feature: Login
-    As a user i want to login to website sauce demo
+    As a user i want to login to GuruMu website
 
-  Scenario: Normal login
-    Given User open the website GuruMu
+  Scenario: Login user with valid email & password
+    Given User already in GuruMu login page
     When User input "johndoe@gmail.com" as email and input "pass12345" as password
+    Then User clicked masuk button
 
-  Scenario Outline: Invalid Login
-    Given User open the website GuruMu
+  Scenario: Login user with empty data
+    Given User already in GuruMu login page
+    When User input "" as email and input "" as password
+    Then User cant clicked masuk button
+
+  Scenario Outline: Login user with invalid data
+    Given User already in GuruMu login page
     When User input "<email>" as email and input "<password>" as password
-    Then User see error "<errorMessage>" on login page
+    Then User cant clicked masuk button
   Examples:
-    | email             | password | errorMessage         |
-    | johndoe@gmail.com |          | Password is required |
-    |                   | 123      | Username is required |
+    | email                  | password    |
+    | unregistered@gmail.com | unregister  |
+    | wrongemail@gmail.com   | validpass   |
+    | validemail@gmail.com   | invalidpass |

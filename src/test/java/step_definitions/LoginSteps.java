@@ -5,27 +5,29 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.apache.commons.logging.Log;
 import org.example.pageObject.LoginPage;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 public class LoginSteps {
     private WebDriver webDriver;
+    LoginPage loginPage;
 
     public LoginSteps(){
         super();
         this.webDriver = Hooks.webDriver;
+        loginPage = new LoginPage(webDriver);
     }
 
-    @Given("User open the website GuruMu")
-    public void verifyDisplay(){
-        LoginPage loginPage = new LoginPage(webDriver);
+    @Given("^User already in GuruMu login page$")
+    public void userAlreadyInGuruMuLoginPage() {
+        loginPage.avatarBtn();
         loginPage.isDisplayed();
     }
 
     @When("User input \"(.*)\" as email and input \"(.*)\" as password")
     public void inputCredential(String email, String password){
-        LoginPage loginPage = new LoginPage(webDriver);
         loginPage.setEmail(email);
         loginPage.setPassword(password);
         loginPage.clickLogin();
@@ -33,7 +35,17 @@ public class LoginSteps {
 
     @Then("User see error \"(.*)\" on login page")
     public void errorText(String errorText){
-        LoginPage loginPage = new LoginPage((webDriver));
         Assert.assertEquals(errorText, loginPage.getErrorText());
+    }
+
+
+    @Then("User clicked masuk button")
+    public void userClickMasukButton(){
+        loginPage.clickLogin();
+    }
+
+    @Then("^User cant clicked masuk button$")
+    public void userCantClickedMasukButton() {
+        loginPage.disableBtn();
     }
 }
