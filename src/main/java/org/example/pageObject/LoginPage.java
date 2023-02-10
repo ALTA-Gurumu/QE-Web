@@ -77,7 +77,7 @@ public class LoginPage {
     }
 
     public String getSucces(){
-       return succesLogin.getText();
+        return succesLogin.getText();
     }
 
     public void setOkBtn(){

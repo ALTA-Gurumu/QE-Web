@@ -1,6 +1,6 @@
 @Login
-  Feature: Login
-    As a user i want to login to GuruMu website
+Feature: Login
+  As a user i want to login to GuruMu website
 
   Scenario: Login user with valid email & password
     Given User already in GuruMu login page
@@ -18,8 +18,8 @@
     When User input "<email>" as email and input "<password>" as password
     Then User clicked masuk button
     And Alert pop-up will shown with message "data not found"
-  Examples:
-    | email                  | password    |
-    | unregistered@gmail.com | unregister  |
-    | wrongemail@gmail.com   | validpass   |
-    | validemail@gmail.com   | invalidpass |
+    Examples:
+      | email                  | password    |
+      | unregistered@gmail.com | unregister  |
+      | wrongemail@gmail.com   | validpass   |
+      | validemail@gmail.com   | invalidpass |
