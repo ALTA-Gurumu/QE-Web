@@ -31,6 +31,12 @@ public class LoginPage {
     @FindBy(xpath = "//button[@id='btn-auth']")
     private WebElement dropDownAvatar;
 
+    @FindBy(xpath = "//h2[@class='swal2-title']")
+    private WebElement succesLogin;
+
+    @FindBy(xpath = "//button[@class='swal2-confirm swal2-styled swal2-default-outline']")
+    private WebElement okBtn;
+
     public void setEmail(String eml){
         email.sendKeys(eml);
     }
@@ -60,5 +66,21 @@ public class LoginPage {
     public boolean disableBtn(){
         btnLogin.isEnabled();
         return false;
+    }
+
+    public String getAlert(){
+        return driver.switchTo().alert().getText();
+    }
+
+    public void alertBtn(){
+        driver.switchTo().alert().accept();
+    }
+
+    public String getSucces(){
+       return succesLogin.getText();
+    }
+
+    public void setOkBtn(){
+        okBtn.click();
     }
 }

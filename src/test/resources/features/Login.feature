@@ -4,8 +4,9 @@
 
   Scenario: Login user with valid email & password
     Given User already in GuruMu login page
-    When User input "johndoe@gmail.com" as email and input "pass12345" as password
+    When User input "fikri@gmail.com" as email and input "password12" as password
     Then User clicked masuk button
+    And User will see "Succes Login" in beranda page
 
   Scenario: Login user with empty data
     Given User already in GuruMu login page
@@ -15,7 +16,8 @@
   Scenario Outline: Login user with invalid data
     Given User already in GuruMu login page
     When User input "<email>" as email and input "<password>" as password
-    Then User cant clicked masuk button
+    Then User clicked masuk button
+    And Alert pop-up will shown with message "data not found"
   Examples:
     | email                  | password    |
     | unregistered@gmail.com | unregister  |

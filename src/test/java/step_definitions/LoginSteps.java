@@ -40,12 +40,25 @@ public class LoginSteps {
 
 
     @Then("User clicked masuk button")
-    public void userClickMasukButton(){
+    public void userClickMasukButton() throws InterruptedException {
         loginPage.clickLogin();
+        Thread.sleep(3000);
     }
 
     @Then("^User cant clicked masuk button$")
     public void userCantClickedMasukButton() {
         loginPage.disableBtn();
+    }
+
+    @And("^Alert pop-up will shown with message \"(.*)\"$")
+    public void alertPopUpWillShownWithMessage(String alertMsg) {
+        Assert.assertEquals(alertMsg,loginPage.getAlert());
+        loginPage.alertBtn();
+    }
+
+    @And("^User will see \"(.*)\" in beranda page$")
+    public void userWillSeeSuccesAlertInBerandaPage(String succesAlert) {
+        Assert.assertEquals(succesAlert,loginPage.getSucces());
+        loginPage.setOkBtn();
     }
 }
