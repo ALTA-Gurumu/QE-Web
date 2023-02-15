@@ -14,14 +14,17 @@ public class ProfilePage {
         this.driver = driver;
     }
 
-    @FindBy(id = "link-profil")
+    @FindBy(id = "//div[@class='bp4-tab text-[18px] font-semibold text-slate-500 lg:px-6 px-1']")
     private WebElement navbarProfil;
 
-    @FindBy(id = "")
+    @FindBy(id = "bp4-tab-title_undefined_tab-2")
     private WebElement navbarRiwayat;
 
-    @FindBy(id = "")
+    @FindBy(xpath = "//div[.='Sedang Berlangsung']")
     private WebElement navbarSedangBerlangsung;
+
+    @FindBy(xpath = "//div[.='Detail Transaksi']")
+    private WebElement navbarDetailTransaksi;
 
     @FindBy(id = "")
     private WebElement titleRiwayat;
@@ -29,7 +32,7 @@ public class ProfilePage {
     @FindBy(id = "")
     private WebElement titleSedangBerlangsung;
 
-    @FindBy(id = "")
+    @FindBy(css = ".text-component")
     private WebElement linkTeacherNameForRating;
 
     public boolean isDisplayNavbarProfil() {
@@ -41,10 +44,10 @@ public class ProfilePage {
     }
 
     public boolean isActiveNavbarRiwayat() {
-        return titleRiwayat.isDisplayed();
+        return navbarRiwayat.getAttribute("aria-selected").equals("true");
     }
 
-    public void clickUlasanLinkByTeacher(String teacherName) {
-        linkTeacherNameForRating.findElement(By.xpath("" + teacherName)).click();
+    public void clickUlasanLinkByTeacher() {
+        linkTeacherNameForRating.click();
     }
 }
